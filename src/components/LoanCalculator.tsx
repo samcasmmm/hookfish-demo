@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './LoanCalculator.css';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -15,7 +15,20 @@ const LoanCalculator = () => {
     totalAmount: 0,
   });
 
-  useEffect(() => calculateLoan, []);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const options: any = {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Average Rainfall per month',
+        fontSize: 20,
+      },
+      legend: {
+        display: true,
+        position: 'right',
+      },
+    },
+  };
 
   const state = {
     labels: ['Total Interest', 'Principal Loan Amount'],
@@ -142,22 +155,9 @@ const LoanCalculator = () => {
             Calculate
           </button>
         </div>
-
+        {/* ignore-type */}
         <div className='right'>
-          <Pie
-            data={state}
-            options={{
-              title: {
-                display: true,
-                text: 'Average Rainfall per month',
-                fontSize: 20,
-              },
-              legend: {
-                display: true,
-                position: 'right',
-              },
-            }}
-          />
+          <Pie data={state} options={options} />
         </div>
       </div>
     </div>

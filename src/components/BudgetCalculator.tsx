@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './BudgetCalculator.css';
 
 const BudgetCalculator = () => {
-  // Initialize state to hold the values of the range inputs
   const [savings, setSavings] = useState([
     {
       label: 'Savings for buying home',
