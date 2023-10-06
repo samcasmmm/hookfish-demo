@@ -35,7 +35,7 @@ const BudgetCalculator = () => {
     0
   );
 
-  const handleRangeChange = (index, newValue) => {
+  const handleRangeChange = (index: number, newValue: number) => {
     const newSavings = [...savings];
     newSavings[index].value = newValue; // Update the 'value' property
     setSavings(newSavings);
