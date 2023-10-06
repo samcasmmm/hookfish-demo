@@ -25,7 +25,7 @@ const LoanCalculator = () => {
       },
       legend: {
         display: true,
-        position: 'right',
+        position: 'top',
       },
     },
   };
