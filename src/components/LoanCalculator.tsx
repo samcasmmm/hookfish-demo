@@ -42,7 +42,7 @@ const LoanCalculator = () => {
     ],
   };
 
-  useEffect(() => calculateLoan, []);
+  useEffect(() => calculateLoan(), []);
 
   const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
