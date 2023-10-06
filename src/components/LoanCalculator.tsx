@@ -1,42 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LoanCalculator.css';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-//
-
 const LoanCalculator = () => {
   const [inputData, setInputData] = useState({
     amount: 20000,
     interest: 7.5,
-    tenure: 120,
+    tenure: 10,
     loanEmi: 0,
     interestPayable: 0,
     totalAmount: 0,
   });
 
+  useEffect(() => calculateLoan, []);
+
   const state = {
-    labels: ['January', 'February', 'March', 'April', 'May'],
+    labels: ['Total Interest', 'Principal Loan Amount'],
     datasets: [
       {
-        label: 'Rainfall',
-        backgroundColor: [
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          '#6800B4',
-        ],
-        hoverBackgroundColor: [
-          '#501800',
-          '#4B5000',
-          '#175000',
-          '#003350',
-          '#35014F',
-        ],
-        data: [65, 59, 80, 81, 56],
+        // label: labels,
+        backgroundColor: ['#e63946', '#14213d'],
+        hoverBackgroundColor: ['#e6394690', '#14213d90'],
+        data: [inputData.interestPayable, inputData.totalAmount],
       },
     ],
   };
@@ -60,19 +48,25 @@ const LoanCalculator = () => {
       (Math.pow(1 + monthlyInterestRate, totalMonths) - 1);
 
     console.log(Math.round(emi));
+    updateData(emi);
   };
 
   const updateData = (emi: number) => {
-    const _totalAmount = Math.round(tenure + emi);
+    const _totalAmount = Math.round(totalMonths * emi);
     const _interestPayable = Math.round(_totalAmount - amount);
 
     setInputData((prev) => ({
       ...prev,
       loanEmi: Math.round(emi),
-      interestPayable: Math.round(_interestPayable),
+      interestPayable: _interestPayable,
       totalAmount: Math.round(_totalAmount),
     }));
   };
+
+  function formatIndianCurrency(number: number) {
+    const formatter = new Intl.NumberFormat('en-IN');
+    return formatter.format(number);
+  }
 
   return (
     <div className='loan-calculator'>
@@ -107,7 +101,7 @@ const LoanCalculator = () => {
           </div>
 
           <div className='group'>
-            <div className='title'>Tenure (in months)</div>
+            <div className='title'>Tenure (in Years)</div>
             <input
               type='text'
               name='tenure'
@@ -125,17 +119,23 @@ const LoanCalculator = () => {
         <div className='left'>
           <div className='loan-emi'>
             <h3>Loan EMI</h3>
-            <div className='value'>{inputData.loanEmi || 0}</div>
+            <div className='value'>
+              {formatIndianCurrency(inputData.loanEmi) || 0}
+            </div>
           </div>
 
           <div className='total-interest'>
             <h3>Total Interest Payable</h3>
-            <div className='value'>{inputData.interestPayable || 0}</div>
+            <div className='value'>
+              {formatIndianCurrency(inputData.interestPayable) || 0}
+            </div>
           </div>
 
           <div className='total-amount'>
             <h3>Total Amount</h3>
-            <div className='value'>{inputData.totalAmount || 0}</div>
+            <div className='value'>
+              {formatIndianCurrency(inputData.totalAmount) || 0}
+            </div>
           </div>
 
           <button className='calculate-btn' onClick={calculateLoan}>

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import './App.css';
 import LoanCalculator from './components/LoanCalculator';
-import EmiCalc from './components/EmiCalc';
+import BudgetCalculator from './components/BudgetCalculator';
 
 function App() {
   const [tab, setTab] = useState<'loan' | 'emi'>('loan');
+
   return (
     <>
       <ul className='tab'>
@@ -21,7 +22,7 @@ function App() {
           Emi Calculator
         </li>
       </ul>
-      <main>{tab === 'loan' ? <LoanCalculator /> : <EmiCalc />}</main>
+      <main>{tab === 'loan' ? <LoanCalculator /> : <BudgetCalculator />}</main>
     </>
   );
 }
