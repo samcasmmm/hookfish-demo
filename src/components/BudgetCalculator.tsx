@@ -6,7 +6,7 @@ const BudgetCalculator = () => {
     {
       label: 'Savings for buying home',
       subLabel: '',
-      value: 500000,
+      value: 2000000,
       min: 500000,
       max: 200000000,
       steps: 500000,
@@ -14,7 +14,7 @@ const BudgetCalculator = () => {
     {
       label: 'Preffered loan tenure',
       subLabel: 'Years',
-      value: 1,
+      value: 10,
       min: 1,
       max: 30,
       steps: 1,
@@ -22,7 +22,7 @@ const BudgetCalculator = () => {
     {
       label: 'EMI you can afford',
       subLabel: '/Month',
-      value: 5000,
+      value: 20000,
       min: 1000,
       max: 1000000,
       steps: 1000,
