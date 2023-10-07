@@ -12,7 +12,7 @@ const BudgetCalculator = () => {
       steps: 500000,
     },
     {
-      label: 'Preffered loan tenure',
+      label: 'Preferred loan tenure',
       subLabel: 'Years',
       value: 10,
       min: 1,
@@ -36,8 +36,23 @@ const BudgetCalculator = () => {
 
   const handleRangeChange = (index: number, newValue: number) => {
     const newSavings = [...savings];
-    newSavings[index].value = newValue; // Update the 'value' property
+    newSavings[index].value = newValue;
     setSavings(newSavings);
+  };
+  const formatBudget = (budget: number, interestRate = 0.875) => {
+    const interest = budget * interestRate;
+    const totalBudget = budget + interest;
+    if (totalBudget >= 10000000) {
+      return `${(totalBudget / 10000000).toFixed(2)} - ${(
+        (totalBudget + 5000000) /
+        10000000
+      ).toFixed(2)} cr`;
+    } else {
+      return `${(totalBudget / 100000).toFixed(2)} - ${(
+        (totalBudget + 500000) /
+        100000
+      ).toFixed(2)}  lacs`;
+    }
   };
 
   return (
@@ -70,11 +85,7 @@ const BudgetCalculator = () => {
       </div>
       <div className='result'>
         <p>
-          Your home budget: ₹{' '}
-          <span>
-            {totalBudget.toLocaleString()} - {Math.floor(totalBudget / 100000)}
-          </span>{' '}
-          lacs
+          Your home budget: ₹ <span>{formatBudget(totalBudget, 0.875)}</span>
         </p>
       </div>
     </div>
