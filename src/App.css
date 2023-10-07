@@ -13,6 +13,7 @@
   margin-top: 2rem;
   width: 100%;
 }
+
 .tab li {
   padding: 0.5rem 1rem;
   border: 1px solid #33415530;
@@ -20,6 +21,7 @@
   cursor: pointer;
   transition: all ease-in-out 0.2s;
   font-weight: bold;
+  width: auto;
 }
 .tab li:hover {
   background: #14213d90;
@@ -36,4 +38,39 @@ main {
   justify-content: center;
   width: 100vw;
   margin-top: 1rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 767px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .tab {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+  .tab li {
+    padding: 0.5rem 0.5rem;
+    font-size: 12px;
+  }
+  main {
+    margin-top: 0;
+  }
 }

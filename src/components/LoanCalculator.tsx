@@ -20,7 +20,7 @@ const LoanCalculator = () => {
     plugins: {
       title: {
         display: true,
-        text: 'Average Rainfall per month',
+        text: 'Average Loan',
         fontSize: 20,
       },
       legend: {

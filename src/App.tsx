@@ -2,9 +2,25 @@ import { useState } from 'react';
 import './App.css';
 import LoanCalculator from './components/LoanCalculator';
 import BudgetCalculator from './components/BudgetCalculator';
+import LoanEligibility from './components/LoanEligibility';
+
+type Tab = 'loan' | 'emi' | 'eligibility';
 
 function App() {
-  const [tab, setTab] = useState<'loan' | 'emi'>('loan');
+  const [tab, setTab] = useState<Tab>('loan');
+
+  const Render = () => {
+    switch (tab) {
+      case 'loan':
+        return <LoanCalculator />;
+      case 'emi':
+        return <BudgetCalculator />;
+      case 'eligibility':
+        return <LoanEligibility />;
+      default:
+        return <LoanCalculator />;
+    }
+  };
 
   return (
     <>
@@ -19,10 +35,18 @@ function App() {
           className={tab === 'emi' ? 'active' : ''}
           onClick={() => setTab('emi')}
         >
-          Emi Calculator
+          EMI Calculator
+        </li>
+        <li
+          className={tab === 'eligibility' ? 'active' : ''}
+          onClick={() => setTab('eligibility')}
+        >
+          Loan Eligibility
         </li>
       </ul>
-      <main>{tab === 'loan' ? <LoanCalculator /> : <BudgetCalculator />}</main>
+      <main>
+        <Render />
+      </main>
     </>
   );
 }
