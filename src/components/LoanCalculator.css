@@ -109,4 +109,10 @@
     flex-direction: column;
     text-align: center;
   }
+  .loan-calculator .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
 }
