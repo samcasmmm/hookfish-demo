@@ -41,6 +41,7 @@
   align-items: center;
   justify-content: center;
   min-height: 10vh;
+  margin: 1rem 0;
 }
 .result p {
   font-size: 20px;

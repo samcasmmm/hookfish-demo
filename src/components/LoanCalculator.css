@@ -44,6 +44,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 10vh;
+  margin: 1rem 0;
 }
 
 .loan-calculator .result .left {
