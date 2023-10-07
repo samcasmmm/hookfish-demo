@@ -46,13 +46,17 @@ const LoanEligibility = () => {
   };
 
   const state = {
-    labels: ['Total Interest', 'Principal Loan Amount'],
+    labels: ['Loan Amount', 'Interest', 'Total'],
     datasets: [
       {
         label: 'Amount',
-        backgroundColor: ['#e63946', '#14213d'],
-        hoverBackgroundColor: ['#e6394690', '#14213d90'],
-        data: [inputData.borrowAmt, inputData.payableAmt],
+        backgroundColor: ['#e63946', '#14213d', '#1d4ed8'],
+        hoverBackgroundColor: ['#e6394690', '#14213d90', '#1d4ed890'],
+        data: [
+          inputData.borrowAmt,
+          inputData.payableAmt - inputData.borrowAmt,
+          inputData.payableAmt,
+        ],
       },
     ],
   };
